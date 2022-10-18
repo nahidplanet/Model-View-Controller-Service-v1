@@ -9,35 +9,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-
-
+app.use("/api/v1/product/", productRoute);
 
 // route 
+
+
 app.get("/", (req, res, next) => {
     console.log("home page");
     res.send("this is home page")
 })
-
-
-app.use("/api/v1/product", productRoute);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
