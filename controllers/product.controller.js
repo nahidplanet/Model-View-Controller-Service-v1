@@ -37,6 +37,12 @@ module.exports.getProducts = async (req, res, next) => {
             const perseFlitters = JSON.parse(filterStringify);
             queries.filter = perseFlitters;
         }
+        if (queryIs.page) {
+            const {page=1,limit=5} = queryIs;
+            const skip = (page-1)*parseInt(limit);
+            queries.skip = skip;
+            queries.limit = limit
+        }
 
         // console.log(perseFlitters);
 
