@@ -10,21 +10,35 @@ const {
 
 module.exports.getProducts = async (req, res, next) => {
     try {
-        // const queryObject = { ...req.query }
+        const queryIs = { ...req.query }
+
+
+
         // const excludeField = ["sort", "page", "limit"];
-        // excludeField.forEach(x => delete queryObject[x]);
+        // excludeField.forEach(x => delete queryIs[x]);
+
 
         // =========================================
         const queries = {};
 
-        if (req.query.field) {
-            const query = req.query.field.split(',').join(' ');
+        if (queryIs.field) {
+            const query = queryIs.field.split(',').join(' ');
             queries.field = query;
         }
-        if (req.query.sort) {
-            const query = req.query.sort.split(',').join(' ');
+        if (queryIs.sort) {
+            const query = queryIs.sort.split(',').join(' ');
             queries.sort = query;
         }
+        if (queryIs.price) {
+            const query = queryIs.price;
+            queries.price = { price: query };
+            let filterStringify = JSON.stringify(queries.price);
+            filterStringify = filterStringify.replace(/\b(gt|lg|gte|lte|in)\b/g, (x) => `$${x}`);
+            const perseFlitters = JSON.parse(filterStringify);
+            queries.filter = perseFlitters;
+        }
+
+        // console.log(perseFlitters);
 
 
 
