@@ -33,7 +33,7 @@ module.exports.getProducts = async (req, res, next) => {
             const query = queryIs.price;
             queries.price = { price: query };
             let filterStringify = JSON.stringify(queries.price);
-            filterStringify = filterStringify.replace(/\b(gt|lg|gte|lte|in)\b/g, (x) => `$${x}`);
+            filterStringify = filterStringify.replace(/\b(gt|lt|gte|lte|in)\b/g, (x) => `$${x}`);
             const perseFlitters = JSON.parse(filterStringify);
             queries.filter = perseFlitters;
         }
