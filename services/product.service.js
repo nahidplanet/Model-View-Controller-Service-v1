@@ -13,6 +13,7 @@ module.exports.getProductService = async (queries) => {
     return {totalProduct,totalPage,products};
 }
 module.exports.createProductService = async (data) => {
+    
     const product = new Product(data);
     const result = await product.save();
     return result;

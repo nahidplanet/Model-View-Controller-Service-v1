@@ -1,36 +1,32 @@
 const mongoose = require('mongoose');
-
+const validator = require('validator');
+const {ObjectId} = mongoose.Schema.Types
 const productSchema = mongoose.Schema({
     name: {
         type: String,
-        require: [true, "please provide a product name"],
+        required: [true, "please provide a product name"],
         trim: true,//blank space remove
-        unique: true,
         minLength: [3, "length must be at least 3 character. "],
-        maxLength: [100, "name is too leargs"]
+        maxLength: [100, "name is too large"],
+        lowercase: true
 
     },
     description: {
         type: String,
-        require: true,
+        required: true,
 
-    },
-    price: {
-        type: Number,
-        require: true,
-        min: [0, "price can't be negative"]
     },
     unit: {
         type: String,
-        require: true,
+        required: true,
         enum: {
-            values: ["kg", "pcs", "liter"],
-            message: "unite values can't be {values}. must be kg/pcs/liter "
+            values: ["kg", "pcs", "liter", "bag"],
+            message: "unite values can't be {values}. must be kg/pcs/liter/bag "
         }
     },
     quantity: {
         type: Number,
-        require: [true, "quantity is require"],
+        required: [true, "quantity is require"],
         min: [0, "quantity can't be negative "],
         validate: {
             validator: (value) => {
@@ -46,51 +42,76 @@ const productSchema = mongoose.Schema({
     },
     status: {
         type: String,
-        require: [true, "status is require"],
-        enum: ["in-Stock", "out-of-Stock", "discontinued"]
+        required: [true, "status is require"],
+        enum: ["in-Stock", "out-of-Stock", "discontinued"],
+        lowercase: true
     },
-    // supplier:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref:'Supplier'
-    // },
-    // categories:[{
-    //     name:{
-    //         type:String,
-    //         require:true,
-    //     },
-    //     _id:mongoose.Schema.Types.ObjectId
-    // }]
-    // createdAt:{
-    //     type:Date,
-    //     default: Date.now
-
-    // },
-    // updatedAt:{
-    //     type:Date,
-    //     default: Date.now
-    // }
-
+    imageUrl: {
+        type: String,
+        required: true,
+        validate: [
+            {
+                validator: (value) => {
+                    let urls = [];
+                    if (!Array.isArray(value)) {
+                        return false;
+                    }
+                    let isValid = true;
+                    value.forEach((url) => {
+                        if (!validator.isURL(url)) {
+                            return isValid = false;
+                        }
+                    })
+                    return isValid;
+                },
+                message: "please valid image url"
+            }
+        ]
+    },
+    category: {
+        type: String,
+        required: true,
+    },
+    brand: {
+        name: {
+            type: String,
+            required: true
+        },
+        id: {
+            type: ObjectId,
+            ref: "Brand",
+            required: true,
+        }
+    }
 }, {
     timestamps: true,
     // _id: true or false 
 });
 
+
+// don't use arrow function 
 // mongoose middleware // must be normal function
-productSchema.pre('save', function (next) {
-    if (this.quantity == 0) {
-        this.status = "out-of-Stock"
-    }
-    next();
-});
-productSchema.post("save", function (doc, next) {
-    // console.log("after saving data");
-    next();
-});
+// =============================================
+// productSchema.pre('save', function (next) {
+//     if (this.quantity == 0) {
+//         this.status = "out-of-Stock"
+//     }
+//     next();
+// });
+// productSchema.post("save", function (doc, next) {
+//     // console.log("after saving data");
+//     next();
+// });
+// =============================================
+
 
 // create instance 
-productSchema.methods.logger = function () {
-    console.log(`data saved for ${this.name}`);
-}
+// =============================================
+
+// productSchema.methods.logger = function () {
+//     console.log(`data saved for ${this.name}`);
+// }
+// =============================================
 
 const Product = mongoose.model("Product", productSchema)
 

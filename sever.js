@@ -18,7 +18,7 @@ mongoose.connect(process.env.DATABASE_URL_LOCAL).then((x) => {
 }).catch(err=>console.log(err));
 
 // error handler 
-// errorHandler();
+app.use(errorHandler);
 
 // server listener
 app.listen(port, () => {

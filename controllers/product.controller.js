@@ -66,7 +66,6 @@ module.exports.getProducts = async (req, res, next) => {
 // "save" or "create" for entry data to database 
 module.exports.createProduct = async (req, res, next) => {
     try {
-
         // product.logger();
         const data = await createProductService(req.body);
         res.status(200).json({ status: true, message: "data added successful", data: data });
