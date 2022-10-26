@@ -1,22 +1,43 @@
 
 const Product = require("../models/product.model");
-
+const Brand = require("../models/brand.model");
+// find all product 
 module.exports.getProductService = async (queries) => {
     const products = await Product.find(queries.filter)
-    .skip(queries.skip)
-    .limit(queries.limit)
-    .select(queries.field)
-    .sort(queries.sort);
+        .skip(queries.skip)
+        .limit(queries.limit)
+        .select(queries.field)
+        .sort(queries.sort);
 
     const totalProduct = await Product.countDocuments(queries.filter);
-    const totalPage = Math.ceil(totalProduct/queries.limit)
-    return {totalProduct,totalPage,products};
+    const totalPage = Math.ceil(totalProduct / queries.limit)
+    return { totalProduct, totalPage, products };
 }
+// create a product 
 module.exports.createProductService = async (data) => {
+    const product = await Product.create(data);
+
+    const {_id:productId,brand}=product;
+
+    result = await Brand.updateOne(
+        { _id: brand.id },
+        {
+            $push: { products: productId }
+        })
     
-    const product = new Product(data);
-    const result = await product.save();
-    return result;
+
+console.log(result);
+
+if (result.modifiedCount) {
+    
+}else{
+    return product;
+
+}
+
+    // const product = new Product(data);
+    // const result = await product.save();
+    // return result;
 }
 module.exports.updateProductService = async (productId, data) => {
     // const results = await Product.updateOne({ _id: productId }, { $set: data }, { runValidators: true });

@@ -3,7 +3,7 @@ const Brand = require("../models/brand.model")
 
 // get all brands 
 module.exports.getBrandsService = async () => {
-    const result = await Brand.find();
+    const result = await Brand.find().populate("products");
     return result;
 }
 

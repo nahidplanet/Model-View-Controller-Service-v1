@@ -10,28 +10,35 @@ const storeSchema = mongoose.Schema({
         maxLength: [100, "name is too large"],
         lowercase: true,
         enum: {
-            values: ["dhaka", "rajshahi", "chattogram", "syllhet", "khulna", "barishal", "rangpur"],
+            values: [
+                "dhaka",
+                "rajshahi",
+                "chattogram",
+                "syllhet",
+                "khulna",
+                "barishal",
+                "rangpur"],
             message: "{VALUE} is not a valid name"
         }
     },
-    description:String,
-    status:{
+    description: String,
+    status: {
         type: String,
-        enum:["active","inactive"],
-        default:"active"
+        enum: ["active", "inactive"],
+        default: "active"
     },
-    manager:{
-        name:String,
-        contactNumber:String,
-        id:{
-            type:ObjectId,
-            ref:"User"
+    manager: {
+        name: String,
+        contactNumber: String,
+        id: {
+            type: ObjectId,
+            ref: "User"
         }
 
     }
 
-},{
-    timestamps:true
+}, {
+    timestamps: true
 })
 
 const Store = mongoose.model("Store", storeSchema);

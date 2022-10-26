@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const {ObjectId} = mongoose.Schema.Types
+const { ObjectId } = mongoose.Schema.Types
 const productSchema = mongoose.Schema({
     name: {
         type: String,
@@ -43,31 +43,31 @@ const productSchema = mongoose.Schema({
     status: {
         type: String,
         required: [true, "status is require"],
-        enum: ["in-Stock", "out-of-Stock", "discontinued"],
+        enum: ["in-stock", "out-of-stock", "discontinued"],
         lowercase: true
     },
-    imageUrl: {
-        type: String,
-        required: true,
-        validate: [
-            {
-                validator: (value) => {
-                    let urls = [];
-                    if (!Array.isArray(value)) {
-                        return false;
-                    }
-                    let isValid = true;
-                    value.forEach((url) => {
-                        if (!validator.isURL(url)) {
-                            return isValid = false;
-                        }
-                    })
-                    return isValid;
-                },
-                message: "please valid image url"
-            }
-        ]
-    },
+    // imageUrl: {
+    //     type: String,
+    //     required: true,
+    //     validate: [
+    //         {
+    //             validator: (value) => {
+    //                 let urls = [];
+    //                 if (!Array.isArray(value)) {
+    //                     return false;
+    //                 }
+    //                 let isValid = true;
+    //                 value.forEach((url) => {
+    //                     if (!validator.isURL(url)) {
+    //                         return isValid = false;
+    //                     }
+    //                 })
+    //                 return isValid;
+    //             },
+    //             message: "please valid image url"
+    //         }
+    //     ]
+    // },
     category: {
         type: String,
         required: true,

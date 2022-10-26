@@ -1,15 +1,27 @@
-const { getStoreService, createStoreService, getStoreByIdService, updateStoreByIdService } = require("../services/store.service");
+const {
+    getStoreService,
+    createStoreService,
+    getStoreByIdService,
+    updateStoreByIdService
+} = require("../services/store.service");
 
 
 // get stors 
-
 module.exports.getStore = async (req, res, next) => {
     try {
         const result = await getStoreService();
         if (!result) {
-            res.status(400).json({ status: "fail", message: "store could't Found" })
+            res.status(400)
+                .json({
+                    status: "fail",
+                    message: "store could't Found"
+                })
         }
-        res.status(200).json({ status: "success", data: result })
+        res.status(200)
+            .json({
+                status: "success",
+                data: result
+            })
     } catch (error) {
         next(error)
     }
@@ -49,7 +61,7 @@ module.exports.updateStoreById = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        const result = await updateStoreByIdService(id,req.body);
+        const result = await updateStoreByIdService(id, req.body);
         if (!result) {
             res.status(400).json({ status: "fail", message: "store could't updated by id" })
         }

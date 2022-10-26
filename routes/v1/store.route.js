@@ -1,7 +1,11 @@
 const express = require('express');
 const storeRoute = express.Router();
-
-const { createStore, getStore, getStoreById, updateStoreById } = require('../../controllers/store.controller');
+const {
+    createStore,
+    getStore,
+    getStoreById,
+    updateStoreById
+} = require('../../controllers/store.controller');
 
 storeRoute.route("/")
     .get(getStore)
