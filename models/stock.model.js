@@ -36,23 +36,23 @@ const stockSchema = mongoose.Schema({
     imageUrl: {
         type: String,
         required: true,
-        validate: [
-            {
-                validator: (value) => {
-                    let urls = [];
-                    if (!Array.isArray(value)) {
-                        return false;
-                    }
-                    let isValid = true;
-                    value.forEach((url) => {
-                        if (!validator.isURL(url)) {
-                            return isValid = false;
-                        }
-                    })
-                    return isValid;
-                },
-                message: "please valid image url"
-            }
+        validate: [ validator.isURL, "please provide a valid image"
+            // {
+            //     validator: (value) => {
+            //         let urls = [];
+            //         if (!Array.isArray(value)) {
+            //             return false;
+            //         }
+            //         let isValid = true;
+            //         value.forEach((url) => {
+            //             if (!validator.isURL(url)) {
+            //                 return isValid = false;
+            //             }
+            //         })
+            //         return isValid;
+            //     },
+            //     message: "please valid image url"
+            // }
         ]
     },
     quantity: {
@@ -129,6 +129,11 @@ const stockSchema = mongoose.Schema({
             type: String,
             ref: "Supplier"
         }
+    },
+    sellCount:{
+        type:String,
+        default:0,
+        min:0
     }
 }, {
     timestamps: true

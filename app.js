@@ -7,6 +7,7 @@ const storeRoute = require('./routes/v1/store.route');
 const categoryRoute = require('./routes/v1/category.route');
 const upload = require('./middleware/uploader');
 const fileUploadRouter = require('./routes/v1/fileUploader.route');
+const supplierRouoter = require('./routes/v1/supplier.route');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use("/api/v1/brand/", brandRoute);
 app.use("/api/v1/category/", categoryRoute);
 app.use("/api/v1/store/", storeRoute);
 app.use("/api/v1/file-upload/", fileUploadRouter);
+app.use("/api/v1/supplier/", supplierRouoter);
 
 
 // route 

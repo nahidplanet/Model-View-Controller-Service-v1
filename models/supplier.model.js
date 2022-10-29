@@ -39,22 +39,24 @@ const supplierSchema = mongoose.Schema({
         type: String,
         min: 11,
         required: [true, "please provide a contact number"],
-        validate: {
-            validator: (value) => {
-                return validator.isMobilePhone(value)
-            },
-            message: "please provide a valid phone number"
-        }
+        validate: [validator.isMobilePhone, "please provide a contact number"],
+        // validate: {
+        //     validator: (value) => {
+        //         return validator.isMobilePhone(value)
+        //     },
+        //     message: "please provide a valid phone number"
+        // }
     },
     emergencyContactNumber: {
         type: String,
         required: [true, "please provide a emergency contact number"],
-        validate: {
-            validator: (value) => {
-                return validator.isMobilePhone(value);
-            },
-            message: "please provide a valid phone number"
-        }
+        validate: [validator.isMobilePhone, "please provide a emergency contact number"],
+        // validate: {
+        //     validator: (value) => {
+        //         return validator.isMobilePhone(value);
+        //     },
+        //     message: "please provide a valid phone number"
+        // }
 
     },
     tradeLicenceNumber: {
@@ -89,11 +91,12 @@ const supplierSchema = mongoose.Schema({
 
     imageUrl: {
         type: String,
+        required:[true,"please provide a image url"],
         validate: [validator.isURL, "please provide a valid url"]
     },
     nationalIdimageUrl: {
         type: String,
-        validate: [validator.isURL, "please provide a valid url"]
+        required: [ "please provide a valid url"]
     },
     status: {
         type: String,

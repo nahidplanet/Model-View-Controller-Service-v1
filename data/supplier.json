@@ -1,0 +1,66 @@
+[
+    {
+        "name": "abdul hamid",
+        "email": "abdul@gmail.com",
+        "brand": {
+            "name": "fresh",
+            "id": "6350e3a292e870a7f476998b"
+        },
+        "contactNumber": "01797780333",
+        "emergencyContactNumber": "01862174575",
+        "presentAddress": "barishal",
+        "permanentAddress": "jhenaidah",
+        "location": "barishal",
+        "imageUrl": "https://img.freepik.com/premium-vector/man-avatar-profile-round-icon_24640-14044.jpg?w=740",
+        "nationalIdimageUrl": "23645468584",
+        "status": "active"
+    },
+    {
+        "name": "rasel hasan",
+        "email": "rasel@gmail.com",
+        "brand": {
+            "name": "pran",
+            "id": "6350ec39b46fc4c6091457af"
+        },
+        "contactNumber": "01797254333",
+        "emergencyContactNumber": "01862174575",
+        "presentAddress": "dhaka",
+        "permanentAddress": "rangpur",
+        "location": "dhaka",
+        "imageUrl": "https://cdn4.vectorstock.com/i/1000x1000/06/18/male-avatar-profile-picture-vector-10210618.jpg",
+        "nationalIdimageUrl": "23623668535",
+        "status": "inactive"
+    },
+    {
+        "name": "sajib islam",
+        "email": "sajib@gmail.com",
+        "brand": {
+            "name": "walton",
+            "id": "6350e4405c712d36d5aef625"
+        },
+        "contactNumber": "01797780333",
+        "emergencyContactNumber": "01862174575",
+        "presentAddress": "syllet",
+        "permanentAddress": "syllet",
+        "location": "syllet",
+        "imageUrl": "https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg",
+        "nationalIdimageUrl": "23645468584",
+        "status": "active"
+    },
+    {
+        "name": "rakib hossain",
+        "email": "rakib@gmail.com",
+        "brand": {
+            "name": "nokia",
+            "id": "6350e857910b2e8fa96d829e"
+        },
+        "contactNumber": "01995780325",
+        "emergencyContactNumber": "01862174575",
+        "presentAddress": "khulna",
+        "permanentAddress": "khulna",
+        "location": "khulna",
+        "imageUrl": "https://i.pinimg.com/originals/a6/58/32/a65832155622ac173337874f02b218fb.png",
+        "nationalIdimageUrl": "23645468584",
+        "status": "active"
+    }
+]
